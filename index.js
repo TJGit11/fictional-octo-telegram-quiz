@@ -13,3 +13,45 @@ quizEnd(function () {
     clearInterval(timerId);
   }
 });
+
+let questions = [
+  {
+    question: "Question 1",
+    answers: ["possible answer1", "possible answer2", "possible answer3"],
+    correctAnswer: "possible answer 3 (or 2 as index)",
+  },
+][
+  {
+    question: "Question 1",
+    answers: ["possible answer1", "possible answer2", "possible answer3"],
+    correctAnswer: "possible answer 3 (or 2 as index)",
+  }
+];
+[
+  {
+    question: "Question 1",
+    answers: ["possible answer1", "possible answer2", "possible answer3"],
+    correctAnswer: "possible answer 3 (or 2 as index)",
+  },
+];
+[
+  {
+    question: "Question 1",
+    answers: ["possible answer1", "possible answer2", "possible answer3"],
+    correctAnswer: "possible answer 3 (or 2 as index)",
+  },
+];
+[
+  {
+    question: "Question 1",
+    answers: ["possible answer1", "possible answer2", "possible answer3"],
+    correctAnswer: "possible answer 3 (or 2 as index)",
+  },
+];
+[
+  {
+    question: "Question 1",
+    answers: ["possible answer1", "possible answer2", "possible answer3"],
+    correctAnswer: "possible answer 3 (or 2 as index)",
+  },
+];
