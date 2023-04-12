@@ -1,9 +1,10 @@
 let timer = 90;
-
-let timerId = setInterval(function () {
-  timer -= 1;
-  console.log(timer);
-}, 1000);
+let quizDiv = document.querySelector("#quiz");
+let questionButton1 = document.querySelector("#answer1");
+// let timerId = setInterval(function () {
+//   timer -= 1;
+//   console.log(timer);
+// }, 1000);
 
 // if question === wrong
 // timer -= 10
@@ -18,41 +19,55 @@ let questions = [
   {
     question: "Question 1",
     answers: ["possible answer1", "possible answer2", "possible answer3"],
-    correctAnswer: "possible answer 3 (or 2 as index)",
+    correctAnswer: "possible answer 1 ",
   },
 
   {
-    question: "Question 1",
+    question: "Question 2",
     answers: ["possible answer1", "possible answer2", "possible answer3"],
-    correctAnswer: "possible answer 3 (or 2 as index)",
+    correctAnswer: "possible answer 2 ",
   },
   {
-    question: "Question 1",
+    question: "Question 3",
     answers: ["possible answer1", "possible answer2", "possible answer3"],
-    correctAnswer: "possible answer 3 (or 2 as index)",
+    correctAnswer: "possible answer 3 ",
   },
   ,
   {
-    question: "Question 1",
+    question: "Question 4",
     answers: ["possible answer1", "possible answer2", "possible answer3"],
-    correctAnswer: "possible answer 3 (or 2 as index)",
+    correctAnswer: "possible answer 4 ",
   },
 
   {
-    question: "Question 1",
+    question: "Question 5",
     answers: ["possible answer1", "possible answer2", "possible answer3"],
-    correctAnswer: "possible answer 3 (or 2 as index)",
+    correctAnswer: "possible answer 5 ",
   },
 
   {
-    question: "Question 1",
+    question: "Question 6",
     answers: ["possible answer1", "possible answer2", "possible answer3"],
-    correctAnswer: "possible answer 3 (or 2 as index)",
+    correctAnswer: "possible answer 6 ",
   },
 ];
 
-console.log(questions[1].question);
-console.log(questions[1].answers[0]);
-console.log(questions[1].answers[1]);
-console.log(questions[1].answers[2]);
-console.log(questions[1].correctAnswer);
+let currentQuestion = 0;
+renderQuestion();
+
+function renderQuestion() {
+  console.log(questions[currentQuestion].question);
+  questionButton1.textContent = questions[currentQuestion].answers[0];
+  console.log(questions[currentQuestion].answers[1]);
+  console.log(questions[currentQuestion].answers[2]);
+  console.log("correct answer " + questions[currentQuestion].correctAnswer);
+}
+
+quizDiv.addEventListener("click", function (event) {
+  if (event.target.matches("button")) {
+    console.log("clicked!");
+
+    renderQuestion();
+    currentQuestion++;
+  }
+});
