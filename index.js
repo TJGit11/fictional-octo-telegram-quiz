@@ -24,69 +24,44 @@ let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
 let questions = [
   {
-    question: "Question 1",
-    answers: [
-      "possible answer1",
-      "possible answer2",
-      "possible answer3",
-      "possible answer4",
-    ],
-    correctAnswer: "possible answer 1 ",
+    question: "What color is the sky?",
+    answers: ["Red", "Orange", "Yellow", "Blue"],
+    correctAnswer: "Blue ",
   },
 
   {
-    question: "Question 2",
-    answers: [
-      "possible answer1",
-      "possible answer2",
-      "possible answer3",
-      "possible answer4",
-    ],
-    correctAnswer: "possible answer 2 ",
+    question: "How many oz in a quart?",
+    answers: ["32 oz", "16 oz", "4 oz", "8 oz"],
+    correctAnswer: "32 oz",
   },
   {
-    question: "Question 3",
-    answers: [
-      "possible answer1",
-      "possible answer2",
-      "possible answer3",
-      "possible answer4",
-    ],
-    correctAnswer: "possible answer 3 ",
+    question: "What color is grass?",
+    answers: ["Green", "Yellow", "Brown", "Purple"],
+    correctAnswer: "Green",
   },
   ,
   {
-    question: "Question 4",
-    answers: [
-      "possible answer1",
-      "possible answer2",
-      "possible answer3",
-      "possible answer4",
-    ],
-    correctAnswer: "possible answer 4 ",
+    question: "How many legs does a dog have?",
+    answers: ["Nine", "Seven", "Six", "Four"],
+    correctAnswer: "Four",
   },
 
   {
-    question: "Question 5",
-    answers: [
-      "possible answer1",
-      "possible answer2",
-      "possible answer3",
-      "possible answer4",
-    ],
-    correctAnswer: "possible answer 5 ",
+    question: "What is the center of this solar system?",
+    answers: ["Venus", "Jupiter", "Earth", "The sun"],
+    correctAnswer: "The sun ",
   },
 
-  {
-    question: "Question 6",
-    answers: [
-      "possible answer1",
-      "possible answer2",
-      "possible answer3",
-      "possible answer4",
-    ],
-    correctAnswer: "possible answer 6 ",
-  },
+  // {
+  //   question: "Question 6",
+  //   answers: [
+  //     "possible answer1",
+  //     "possible answer2",
+  //     "possible answer3",
+  //     "possible answer4",
+  //   ],
+  //   correctAnswer: "possible answer 6 ",
+  // },
 ];
 
 quizStart.addEventListener("click", function (event) {
@@ -98,6 +73,7 @@ quizStart.addEventListener("click", function (event) {
   }
 });
 
+// save button goes here
 // store scores
 // localStorage.setItem(
 //   "Highscores",
