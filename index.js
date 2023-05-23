@@ -49,19 +49,15 @@ let questions = [
   {
     question: "What is the center of this solar system?",
     answers: ["Venus", "Jupiter", "Earth", "The sun"],
-    correctAnswer: "The sun ",
+    correctAnswer: "The sun",
   },
 
-  // {
-  //   question: "Question 6",
-  //   answers: [
-  //     "possible answer1",
-  //     "possible answer2",
-  //     "possible answer3",
-  //     "possible answer4",
-  //   ],
-  //   correctAnswer: "possible answer 6 ",
-  // },
+  {
+    question:
+      "What type of animal is the popular video game character Sonic modeled after?",
+    answers: ["Gopher", "Possum", "Wolf", "Hedgehog"],
+    correctAnswer: "Hedgehog ",
+  },
 ];
 
 quizStart.addEventListener("click", function (event) {
@@ -83,6 +79,7 @@ quizStart.addEventListener("click", function (event) {
 let currentQuestion = 0;
 renderQuestion();
 
+// function to
 function renderQuestion() {
   // console.log(questions[currentQuestion].question);
   questionButton1.textContent = questions[currentQuestion].answers[0];
