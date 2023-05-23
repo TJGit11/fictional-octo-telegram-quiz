@@ -1,13 +1,14 @@
 let timer = 90;
 let quizDiv = document.querySelector("#quiz");
 let quizStart = document.querySelector("#startQuiz");
+let questionsDiv = document.querySelector("#questions");
 let questionButton1 = document.querySelector("#answer1");
 let questionButton2 = document.querySelector("#answer2");
 let questionButton3 = document.querySelector("#answer3");
 let questionButton4 = document.querySelector("#answer4");
-// get scores
 let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
+// get scores
 // let timerId = setInterval(function () {
 //   timer -= 1;
 //   console.log(timer);
@@ -69,6 +70,14 @@ quizStart.addEventListener("click", function (event) {
   }
 });
 
+quizDiv.addEventListener("click", function (event) {
+  if (event.target.matches("button")) {
+    console.log("clicked!");
+
+    currentQuestion++;
+    renderQuestion();
+  }
+});
 // save button goes here
 // store scores
 // localStorage.setItem(
@@ -82,17 +91,16 @@ renderQuestion();
 // function to
 function renderQuestion() {
   // console.log(questions[currentQuestion].question);
+  questionsDiv.textContent = questions[currentQuestion].question;
   questionButton1.textContent = questions[currentQuestion].answers[0];
   questionButton2.textContent = questions[currentQuestion].answers[1];
   questionButton3.textContent = questions[currentQuestion].answers[2];
   questionButton4.textContent = questions[currentQuestion].answers[3];
+  if (currentQuestion === 4) {
+    endQuiz();
+  }
 }
 
-quizDiv.addEventListener("click", function (event) {
-  if (event.target.matches("button")) {
-    console.log("clicked!");
-
-    currentQuestion++;
-    renderQuestion();
-  }
-});
+function endQuiz() {
+  quizDiv.classList.add("disabled");
+}
