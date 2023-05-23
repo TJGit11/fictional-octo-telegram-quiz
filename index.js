@@ -9,12 +9,20 @@ let timerElement = document.querySelector("#timer");
 let hideEndMessage = document.querySelector("#endQuiz");
 let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
-// get scores
+// initialize timer and set it to 90
 let timer = 90;
+// timerID starts at 90 and decrements by 1 on a 1000 millisecond (or 1 second) interval
+// then the textContent property of timerElement is set to equal the new timer value after every decrement
 let timerID = setInterval(function () {
   timer -= 1;
   timerElement.textContent = timer;
 }, 1000);
+
+//TODO finish quizEnd function -> should clear the timer, disable the buttons, and prompt for high scores
+//TODO if statement that handles what happens if timer reaches 0
+//TODO if statements to handle wrong answers and correct answers
+//TODO possibly add a startQuiz function that hides the quiz until user agrees to start
+//TODO high scores page
 
 // if question === wrong
 // timer -= 10
@@ -25,6 +33,7 @@ let timerID = setInterval(function () {
 //   }
 // });
 
+// questions array contains multiple question objects that comprise the quiz questions, options, and correct answers
 let questions = [
   {
     question: "What color is the sky?",
@@ -93,19 +102,20 @@ quizDiv.addEventListener("click", function (event) {
 let currentQuestion = 0;
 renderQuestion();
 
-// function to
+// function to render all questions from the questions array
 function renderQuestion() {
-  // console.log(questions[currentQuestion].question);
   questionsDiv.textContent = questions[currentQuestion].question;
   questionButton1.textContent = questions[currentQuestion].answers[0];
   questionButton2.textContent = questions[currentQuestion].answers[1];
   questionButton3.textContent = questions[currentQuestion].answers[2];
   questionButton4.textContent = questions[currentQuestion].answers[3];
-  if (currentQuestion === 4) {
+  // if currentQuestion is at the end of the question array then end the quiz
+  if (currentQuestion === questions.length - 1) {
     endQuiz();
   }
 }
 
+// endQuiz adds the disabled class to an element to disable pointer events via css
 function endQuiz() {
   quizDiv.classList.add("disabled");
 }
