@@ -1,4 +1,3 @@
-let timer = 90;
 let quizDiv = document.querySelector("#quiz");
 let quizStart = document.querySelector("#startQuiz");
 let questionsDiv = document.querySelector("#questions");
@@ -6,13 +5,16 @@ let questionButton1 = document.querySelector("#answer1");
 let questionButton2 = document.querySelector("#answer2");
 let questionButton3 = document.querySelector("#answer3");
 let questionButton4 = document.querySelector("#answer4");
+let timerElement = document.querySelector("#timer");
+let hideEndMessage = document.querySelector("#endQuiz");
 let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
 // get scores
-// let timerId = setInterval(function () {
-//   timer -= 1;
-//   console.log(timer);
-// }, 1000);
+let timer = 90;
+let timerID = setInterval(function () {
+  timer -= 1;
+  timerElement.textContent = timer;
+}, 1000);
 
 // if question === wrong
 // timer -= 10
@@ -60,6 +62,9 @@ let questions = [
     correctAnswer: "Hedgehog ",
   },
 ];
+function startQuiz() {
+  hideEndMessage.classList.add("disabled");
+}
 
 quizStart.addEventListener("click", function (event) {
   if (event.target.matches("button")) {
