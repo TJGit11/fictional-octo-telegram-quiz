@@ -7,16 +7,11 @@ let questionButton3 = document.querySelector("#answer3");
 let questionButton4 = document.querySelector("#answer4");
 let timerElement = document.querySelector("#timer");
 let hideEndMessage = document.querySelector("#endQuiz");
-// let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 let currentQuestion = 0;
+let timerID;
 
-// initialize timer and set it to 90
-
-// timerID starts at 90 and decrements by 1 on a 1000 millisecond (or 1 second) interval
-// then the textContent property of timerElement is set to equal the new timer value after every decrement
-
+let timer = 90;
 function startTimer() {
-  let timer = 90;
   let timerID = setInterval(function () {
     timer = Math.max(0, timer - 1);
     timerElement.textContent = timer;
@@ -32,9 +27,6 @@ function startTimer() {
 //TODO if statements to handle wrong answers and correct answers
 //TODO possibly add a startQuiz function that hides the quiz until user agrees to start
 //TODO high scores page
-
-// if question === wrong
-// timer -= 10
 
 // quizEnd(function () {
 //   if (timer === 0) {
@@ -79,10 +71,10 @@ let questions = [
     correctAnswer: "Hedgehog",
   },
 ];
+startQuiz();
 function startQuiz() {
   hideEndMessage.classList.add("hidden");
 }
-// startQuiz();
 
 quizStart.addEventListener("click", function (event) {
   if (event.target.matches("button")) {
@@ -97,9 +89,9 @@ quizDiv.addEventListener("click", function (event) {
   if (event.target.matches("button")) {
     // console.log("clicked!");
     if (event.target.innerText === questions[currentQuestion].correctAnswer) {
-      correctAnswer.textContent = "Correct";
+      correcto.textContent = "Correct";
     } else {
-      correctAnswer.textContent = "Wrong";
+      correcto.textContent = "Wrong";
       timer -= 10;
     }
     currentQuestion++;
@@ -117,14 +109,15 @@ function renderQuestion() {
   questionButton3.textContent = questions[currentQuestion].answers[2];
   questionButton4.textContent = questions[currentQuestion].answers[3];
   // if currentQuestion is at the end of the question array then end the quiz
-  if (currentQuestion === questions.length - 1) {
+  if (currentQuestion === questions.length) {
     endQuiz();
   }
 }
 
 // endQuiz adds the disabled class to an element to disable pointer events via css
 function endQuiz() {
-  clearInterval();
+  clearInterval(timerID);
+  hideEndMessage.classList.remove("hidden");
   console.log("Quiz is over");
   // quizDiv.classList.add("disabled");
 }
