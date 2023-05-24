@@ -7,16 +7,25 @@ let questionButton3 = document.querySelector("#answer3");
 let questionButton4 = document.querySelector("#answer4");
 let timerElement = document.querySelector("#timer");
 let hideEndMessage = document.querySelector("#endQuiz");
-let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+// let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+let currentQuestion = 0;
 
 // initialize timer and set it to 90
-let timer = 90;
+
 // timerID starts at 90 and decrements by 1 on a 1000 millisecond (or 1 second) interval
 // then the textContent property of timerElement is set to equal the new timer value after every decrement
-let timerID = setInterval(function () {
-  timer -= 1;
-  timerElement.textContent = timer;
-}, 1000);
+
+function startTimer() {
+  let timer = 90;
+  let timerID = setInterval(function () {
+    timer = Math.max(0, timer - 1);
+    timerElement.textContent = timer;
+    if (timer === 0) {
+      clearInterval(timerID);
+      endQuiz();
+    }
+  }, 1000);
+}
 
 //TODO finish quizEnd function -> should clear the timer, disable the buttons, and prompt for high scores
 //TODO if statement that handles what happens if timer reaches 0
@@ -38,7 +47,7 @@ let questions = [
   {
     question: "What color is the sky?",
     answers: ["Red", "Orange", "Yellow", "Blue"],
-    correctAnswer: "Blue ",
+    correctAnswer: "Blue",
   },
 
   {
@@ -51,7 +60,6 @@ let questions = [
     answers: ["Green", "Yellow", "Brown", "Purple"],
     correctAnswer: "Green",
   },
-  ,
   {
     question: "How many legs does a dog have?",
     answers: ["Nine", "Seven", "Six", "Four"],
@@ -68,39 +76,38 @@ let questions = [
     question:
       "What type of animal is the popular video game character Sonic modeled after?",
     answers: ["Gopher", "Possum", "Wolf", "Hedgehog"],
-    correctAnswer: "Hedgehog ",
+    correctAnswer: "Hedgehog",
   },
 ];
 function startQuiz() {
-  hideEndMessage.classList.add("disabled");
+  hideEndMessage.classList.add("hidden");
 }
+// startQuiz();
 
 quizStart.addEventListener("click", function (event) {
   if (event.target.matches("button")) {
     console.log("clicked!");
 
-    currentQuestion++;
+    startTimer();
     renderQuestion();
   }
 });
 
 quizDiv.addEventListener("click", function (event) {
   if (event.target.matches("button")) {
-    console.log("clicked!");
-
+    // console.log("clicked!");
+    if (event.target.innerText === questions[currentQuestion].correctAnswer) {
+      correctAnswer.textContent = "Correct";
+    } else {
+      correctAnswer.textContent = "Wrong";
+      timer -= 10;
+    }
     currentQuestion++;
     renderQuestion();
   }
 });
-// save button goes here
-// store scores
-// localStorage.setItem(
-//   "Highscores",
-//   JSON.stringify([{ initials: "dre", score: 80 }])
-// );
 
-let currentQuestion = 0;
-renderQuestion();
+// renderQuestion();
 
 // function to render all questions from the questions array
 function renderQuestion() {
@@ -117,5 +124,7 @@ function renderQuestion() {
 
 // endQuiz adds the disabled class to an element to disable pointer events via css
 function endQuiz() {
-  quizDiv.classList.add("disabled");
+  clearInterval();
+  console.log("Quiz is over");
+  // quizDiv.classList.add("disabled");
 }
