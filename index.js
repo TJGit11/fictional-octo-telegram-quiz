@@ -7,6 +7,7 @@ let questionButton3 = document.querySelector("#answer3");
 let questionButton4 = document.querySelector("#answer4");
 let timerElement = document.querySelector("#timer");
 let hideEndMessage = document.querySelector("#endQuiz");
+let startButton = document.querySelector("#startButton");
 let currentQuestion = 0;
 let timerID;
 
@@ -22,17 +23,8 @@ function startTimer() {
   }, 1000);
 }
 
-//TODO finish quizEnd function -> should clear the timer, disable the buttons, and prompt for high scores
-//TODO if statement that handles what happens if timer reaches 0
-//TODO if statements to handle wrong answers and correct answers
-//TODO possibly add a startQuiz function that hides the quiz until user agrees to start
+//TODO finish quizEnd function -> disable the buttons, and prompt for high scores
 //TODO high scores page
-
-// quizEnd(function () {
-//   if (timer === 0) {
-//     clearInterval(timerId);
-//   }
-// });
 
 // questions array contains multiple question objects that comprise the quiz questions, options, and correct answers
 let questions = [
@@ -71,27 +63,35 @@ let questions = [
     correctAnswer: "Hedgehog",
   },
 ];
+
 startQuiz();
 function startQuiz() {
   hideEndMessage.classList.add("hidden");
+  quizDiv.classList.add("hidden");
 }
 
 quizStart.addEventListener("click", function (event) {
   if (event.target.matches("button")) {
     console.log("clicked!");
 
+    quizStart.classList.add("hidden");
+    quizDiv.classList.remove("hidden");
+
     startTimer();
     renderQuestion();
   }
 });
-
+let correctCount = 0;
+let incorrectCount = 0;
 quizDiv.addEventListener("click", function (event) {
   if (event.target.matches("button")) {
     // console.log("clicked!");
     if (event.target.innerText === questions[currentQuestion].correctAnswer) {
-      correcto.textContent = "Correct";
+      correctCount++;
+      correcto.textContent = "Correct" + " " + "(" + correctCount + ")";
     } else {
-      correcto.textContent = "Wrong";
+      incorrectCount++;
+      correcto.textContent = "Incorrect" + " " + "(" + incorrectCount + ")";
       timer -= 10;
     }
     currentQuestion++;
@@ -119,5 +119,5 @@ function endQuiz() {
   clearInterval(timerID);
   hideEndMessage.classList.remove("hidden");
   console.log("Quiz is over");
-  // quizDiv.classList.add("disabled");
+  quizDiv.classList.add("disabled");
 }
